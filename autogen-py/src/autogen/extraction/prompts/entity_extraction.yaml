@@ -1,0 +1,35 @@
+entity_extraction: |
+  You are a medical knowledge extraction assistant. Read the text below and extract:
+  1. **Entities**: named medical concepts (drugs, diseases, enzymes, genes, proteins,
+     symptoms, treatments, procedures, anatomical structures, pathways, biomarkers,
+     etc.) with their type and a short description.
+  2. **Relationships**: connections between entities, with a description, keywords,
+     and a strength score (0.0-1.0).
+  3. **Content keywords**: important topic keywords for this chunk.
+
+  {entity_types_section}
+
+  --- DELIMITERS ---
+  Entity delimiter: {response_delimiter}
+  Relationship delimiter: {response_delimiter}
+  Keyword delimiter: {response_delimiter}
+  Tuple delimiter: {tuple_delimiter}
+  Completion marker: {completion_delimiter}
+
+  --- TEXT ---
+  {input_text}
+
+  --- INSTRUCTIONS ---
+  1. Identify all MEDICAL entities in the text. For each entity, output:
+     ({tuple_delimiter}name{tuple_delimiter}type{tuple_delimiter}description)
+  2. Identify all RELATIONSHIPS between entities. For each relationship, output:
+     ({tuple_delimiter}source{tuple_delimiter}target{tuple_delimiter}description{tuple_delimiter}keywords{tuple_delimiter}strength)
+     Keywords should be comma-separated. Strength should be 0.0-1.0.
+  3. Identify CONTENT KEYWORDS important for this chunk. Output as comma-separated list.
+  4. Use {response_delimiter} to separate entities, relationships, and keywords sections.
+  5. End your response with {completion_delimiter}
+
+  Begin your extraction:
+
+entity_extraction_with_types_section: |
+  Valid entity types: {entity_types}

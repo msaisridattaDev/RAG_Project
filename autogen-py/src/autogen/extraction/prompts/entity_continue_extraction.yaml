@@ -1,0 +1,23 @@
+entity_continue_extraction: |
+  You previously extracted the following entities from the text:
+  {previous_entities}
+
+  Are there any ADDITIONAL medical entities in this text that you missed?
+  Look carefully for diseases, drugs, enzymes, genes, proteins, symptoms, treatments,
+  procedures, anatomical structures, pathways, biomarkers, and other medical concepts.
+
+  {entity_types_section}
+
+  --- DELIMITERS ---
+  Entity delimiter: {response_delimiter}
+  Tuple delimiter: {tuple_delimiter}
+  Completion marker: {completion_delimiter}
+
+  --- TEXT ---
+  {input_text}
+
+  --- INSTRUCTIONS ---
+  Output ONLY additional entities you missed before. Use the same format:
+  ({tuple_delimiter}name{tuple_delimiter}type{tuple_delimiter}description)
+  End with {completion_delimiter}
+  If there are no additional entities, just output {completion_delimiter}

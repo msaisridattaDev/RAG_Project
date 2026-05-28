@@ -1,0 +1,14 @@
+entity_type_resolver: |
+  You are a medical ontology normalizer. Map the following raw entity type to one of
+  the canonical types from the list below. The raw type may be a synonym, abbreviation,
+  or related concept.
+
+  Valid canonical types:
+  {valid_types}
+
+  Raw type: {raw_type}
+  Entity context (optional): {context}
+
+  --- INSTRUCTIONS ---
+  Return ONLY the canonical type string, nothing else.
+  If no canonical type matches, return "CONCEPT" as the fallback.

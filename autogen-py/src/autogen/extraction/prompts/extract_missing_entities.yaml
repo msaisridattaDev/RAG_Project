@@ -1,0 +1,20 @@
+extract_missing_entities: |
+  A previous extraction found relationships referencing these entities,
+  but the entities themselves were not extracted from this text chunk:
+  {missing_names}
+
+  Please extract these specific entities from the text below:
+
+  --- DELIMITERS ---
+  Entity delimiter: {response_delimiter}
+  Tuple delimiter: {tuple_delimiter}
+  Completion marker: {completion_delimiter}
+
+  --- TEXT ---
+  {input_text}
+
+  --- INSTRUCTIONS ---
+  For each entity in the list above that appears in the text, output:
+  ({tuple_delimiter}name{tuple_delimiter}type{tuple_delimiter}description)
+  End with {completion_delimiter}
+  If none of the entities appear in the text, just output {completion_delimiter}
