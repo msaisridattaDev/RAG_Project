@@ -1,0 +1,70 @@
+# Phase 3 infrastructure — Neo4j graph database with APOC plugin
+#
+# APOC (Awesome Procedures on Cypher) is required for:
+#   - apoc.coll.toSet() — deduplicate lists in Cypher MERGE ON MATCH
+#   Used in Neo4jGraphStore.upsert_node() for source_ids and
+#   historical_entity_types accumulation.
+#
+# Also includes Elasticsearch for vector storage (Phase 1 Day 4).
+#
+# Usage:
+#   docker compose up -d              # start both
+#   docker compose down -v            # tear down + delete volumes
+#   curl http://localhost:7474        # Neo4j browser
+#   curl http://localhost:9200        # Elasticsearch health
+
+services:
+  # ------------------------------------------------------------------
+  # Neo4j 5 Community — knowledge graph (Phase 3 Days 14–16)
+  # ------------------------------------------------------------------
+  neo4j:
+    image: neo4j:5-community
+    container_name: autogen-neo4j
+    environment:
+      NEO4J_AUTH: neo4j/neo4j
+      NEO4J_PLUGINS: '["apoc"]'
+      # Increase memory for large graphs (NeetPG full ingest ~200K nodes)
+      NEO4J_server_memory_heap_initial__size: 512m
+      NEO4J_server_memory_heap_max__size: 1g
+      NEO4J_server_memory_pagecache_size: 512m
+    ports:
+      - "7474:7474"  # HTTP / Neo4j Browser
+      - "7687:7687"  # Bolt protocol (Python driver)
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p neo4j 'RETURN 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  # ------------------------------------------------------------------
+  # Elasticsearch 8 — vector + text indices (Phase 1 Day 4)
+  # ------------------------------------------------------------------
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.4
+    container_name: autogen-elasticsearch
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      # Required for Jina embeddings (1024-dim dense vectors)
+      # No plugin needed — ES 8.x includes dense_vector natively
+    ports:
+      - "9200:9200"  # REST API
+      - "9300:9300"  # Internal cluster (single-node, not used externally)
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q 'green\|yellow'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  es_data:

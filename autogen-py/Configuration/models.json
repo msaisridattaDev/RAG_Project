@@ -1,0 +1,296 @@
+{
+  "comment": "Model catalog — mirrors autogen.net's models.json. Hot-swappable (loaded at startup, separate from Settings). Uses the 'models' array schema expected by catalog.py's ModelsCatalog Pydantic model.",
+  "models": [
+    {
+      "id": "jina-embeddings-v3",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "jina",
+          "model_name": "jina-embeddings-v3",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.10,
+            "completion_per_million": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-Reranker-4B",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "qwen/qwen3-reranker-4b",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.0,
+            "completion_per_million": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "Gemini-1.5-Flash-8B",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "google/gemini-2.0-flash-lite-preview-02-05",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.075,
+            "completion_per_million": 0.30
+          }
+        },
+        {
+          "name": "Gemini",
+          "model_name": "gemini-2.0-flash-lite",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 0.075,
+            "completion_per_million": 0.30
+          }
+        }
+      ]
+    },
+    {
+      "id": "Gemini-1.5-Flash-2.0",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "google/gemini-2.0-flash-001",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.10,
+            "completion_per_million": 0.40
+          }
+        },
+        {
+          "name": "Gemini",
+          "model_name": "gemini-2.0-flash",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 0.10,
+            "completion_per_million": 0.40
+          }
+        }
+      ]
+    },
+    {
+      "id": "DeepSeek-R1",
+      "is_reasoning": true,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "deepseek/deepseek-r1",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.55,
+            "completion_per_million": 2.19
+          }
+        },
+        {
+          "name": "Groq",
+          "model_name": "deepseek-r1-distill-llama-70b",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 0.75,
+            "completion_per_million": 0.99
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpt-4o-mini",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "OpenAi",
+          "model_name": "gpt-4o-mini",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.15,
+            "completion_per_million": 0.60
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpt-4o",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "OpenAi",
+          "model_name": "gpt-4o",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 2.50,
+            "completion_per_million": 10.00
+          }
+        },
+        {
+          "name": "OpenRouter",
+          "model_name": "openai/gpt-4o",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 2.50,
+            "completion_per_million": 10.00
+          }
+        }
+      ]
+    },
+    {
+      "id": "o3-mini",
+      "is_reasoning": true,
+      "providers": [
+        {
+          "name": "OpenAi",
+          "model_name": "o3-mini",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 1.10,
+            "completion_per_million": 4.40
+          }
+        },
+        {
+          "name": "OpenRouter",
+          "model_name": "openai/o3-mini",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 1.10,
+            "completion_per_million": 4.40
+          }
+        }
+      ]
+    },
+    {
+      "id": "Grok-4-Fast",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "x-ai/grok-4-fast",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.80,
+            "completion_per_million": 3.20
+          }
+        }
+      ]
+    },
+    {
+      "id": "Meta-Llama-3.3-70B-Instruct",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "Groq",
+          "model_name": "llama-3.3-70b-versatile",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.59,
+            "completion_per_million": 0.79
+          }
+        },
+        {
+          "name": "OpenRouter",
+          "model_name": "meta-llama/llama-3.3-70b-instruct",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 0.12,
+            "completion_per_million": 0.30
+          }
+        }
+      ]
+    },
+    {
+      "id": "Qwen-R1-32B",
+      "is_reasoning": true,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "qwen/qwen-r1-32b",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.80,
+            "completion_per_million": 0.80
+          }
+        }
+      ]
+    },
+    {
+      "id": "QwQ-32B",
+      "is_reasoning": true,
+      "providers": [
+        {
+          "name": "OpenRouter",
+          "model_name": "qwen/qwq-32b",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.20,
+            "completion_per_million": 0.80
+          }
+        },
+        {
+          "name": "Groq",
+          "model_name": "qwen-qwq-32b",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 0.20,
+            "completion_per_million": 0.80
+          }
+        }
+      ]
+    },
+    {
+      "id": "claude-sonnet-4-20250514",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "Anthropic",
+          "model_name": "claude-sonnet-4-20250514",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 3.00,
+            "completion_per_million": 15.00
+          }
+        },
+        {
+          "name": "OpenRouter",
+          "model_name": "anthropic/claude-sonnet-4-20250514",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 3.00,
+            "completion_per_million": 15.00
+          }
+        }
+      ]
+    },
+    {
+      "id": "Llama-3.1-8B-Instant",
+      "is_reasoning": false,
+      "providers": [
+        {
+          "name": "Groq",
+          "model_name": "llama-3.1-8b-instant",
+          "priority": 1,
+          "pricing": {
+            "prompt_per_million": 0.05,
+            "completion_per_million": 0.08
+          }
+        },
+        {
+          "name": "OpenRouter",
+          "model_name": "meta-llama/llama-3.1-8b-instruct",
+          "priority": 2,
+          "pricing": {
+            "prompt_per_million": 0.02,
+            "completion_per_million": 0.06
+          }
+        }
+      ]
+    }
+  ]
+}

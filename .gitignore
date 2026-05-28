@@ -1,0 +1,20 @@
+# Pipeline checkpoints generated at runtime
+.checkpoints/
+
+# Claude Code session files
+.claude/
+
+# Local environment
+.env
+
+# Documentation artifacts not part of the codebase
+*.docx
+*.doc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python caches that leak outside autogen-py/
+__pycache__/
+*.py[cod]

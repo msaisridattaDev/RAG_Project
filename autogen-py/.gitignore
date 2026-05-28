@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+!.env.example
+
+# Cache
+.cache/
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.log
+.venv2/
+.ruff_cache/
+.checkpoints/
+cache/
+_debug_investigate.py
+_verification_progress.md
+filelist.txt
+seed_index.py

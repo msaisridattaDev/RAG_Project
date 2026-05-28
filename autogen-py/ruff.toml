@@ -1,0 +1,59 @@
+# ruff.toml — lint and format configuration for autogen-py
+# Line length matches autogen.net's editorconfig (120 chars)
+
+line-length = 110
+target-version = "py312"
+
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "W",   # pycodestyle warnings
+    "UP",  # pyupgrade
+    "YTT", # flake8-2020
+    "ARG", # flake8-unused-arguments
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "T10", # flake8-debugger
+    "T20", # flake8-print
+    "ISC", # flake8-implicit-str-concat
+    "LOG", # flake8-logging
+    "PIE", # flake8-pie
+    "Q",   # flake8-quotes
+    "RET", # flake8-return
+    "RUF", # ruff-specific rules
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "TRY", # tryceratops
+]
+ignore = [
+    "ANN401",  # dynamically-typed-expression
+    "ANN",     # public-function/argument annotations — already enforced by pyright; ruff over-flags
+    "D",       # docstring style — we write our own style
+    "TRY003",  # long messages outside exception class — too pedantic
+    "TRY400",  # logging.exception vs logging.error — cosmetic
+    "SIM103",  # return condition directly — readability is fine as-is
+    "UP046",   # PEP 695 generic class — we use TypeVar deliberately for Pyright compat
+    "RUF002",  # ambiguous unicode in docstrings (en-dash) — intentional plan text
+    "B905",    # zip without strict= — Python 3.12 default semantics are fine
+    "B008",    # function calls in argument defaults — this is FastAPI's Depends idiom
+]
+
+[lint.per-file-ignores]
+# CLI scripts intentionally print to stdout and manipulate sys.path before imports
+"scripts/**" = ["T201", "T20", "E402"]
+# Tests can be loose about type annotations and unused imports
+"tests/**" = ["ANN", "F401", "F841", "ARG"]
+# FastAPI routers use Depends(...) defaults
+"src/autogen/api/routes/**" = ["B008"]
+# Diagnostic script lives at repo root for one-shot debugging
+"_debug_investigate.py" = ["T201", "T20", "E402", "ANN", "F401"]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
